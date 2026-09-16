@@ -183,6 +183,7 @@ almacenamiento del sitio en el navegador (clave `splitmate:v1`) y recarga.
 5. Saldos + liquidación; copiar número Bizum; Compartir → WhatsApp (3:30).
 6. Exportar CSV y abrirlo en Excel (4:15).
 7. Cierre: algoritmo en céntimos + tests en vivo con `npm test` (5:00).
+   
    Pagina demo: https://incurred-importantly-button-developed.trycloudflare.com/** **
 
 ---
