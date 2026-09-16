@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: #050807;
+  --foreground: #f1f5f9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: #10b981;
+  --color-primary-bright: #34d399;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--background);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  isolation: isolate;
+}
+
+/* Layered emerald/teal ambient glows over the near-black base. Fixed,
+   pointer-events-none, contained behind content via the body stacking context. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 400px at 15% -5%, rgb(16 185 129 / 0.14), transparent 60%),
+    radial-gradient(700px 500px at 85% 0%, rgb(20 184 166 / 0.1), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgb(16 185 129 / 0.06), transparent 60%);
+}
+
+/* SplitMate fintech tokens (plain CSS, no global resets). */
+.sm-card {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 0.35);
+}
+
+.sm-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+.sm-input {
+  width: 100%;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.75rem;
+  background: rgb(0 0 0 / 0.4);
+  color: #ecfdf5;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.sm-input::placeholder {
+  color: #64748b;
+}
+
+.sm-input:focus {
+  outline: 2px solid #34d399;
+  outline-offset: 0;
+  border-color: #34d399;
+  box-shadow: 0 0 0 4px rgb(52 211 153 / 0.15);
+}
+
+select.sm-input option {
+  background: #0a0f0d;
+  color: #ecfdf5;
+}
+
+.sm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #34d399, #14b8a6);
+  color: #022c22;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  box-shadow:
+    0 10px 15px -3px rgb(16 185 129 / 0.2),
+    0 4px 6px -4px rgb(16 185 129 / 0.2);
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sm-btn-primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.sm-btn-primary:active:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.sm-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  border-radius: 0.75rem;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.sm-btn-primary:disabled,
+.sm-btn-ghost:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.sm-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgb(110 231 183 / 0.8);
+}
+
+.sm-section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #f8fafc;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 2px;
+}
+
+/* T8 entrance-animation fallback: static state when reduced motion is on. */
+.reveal-fallback {
+  opacity: 1;
+  transform: none;
+}
+
+::selection {
+  background: #10b981;
+  color: #022c22;
+}
+
+/* Dark scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050807;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 8px;
+  border: 2px solid #050807;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1f2937 #050807;
+}
+
+/* T8: keep CSS-only motion (hover lift, bar tweens) instant for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sm-btn-ghost:hover:not(:disabled) {
+  border-color: rgb(255 255 255 / 0.3);
+  background: rgb(255 255 255 / 0.05);
+  color: #f1f5f9;
 }
