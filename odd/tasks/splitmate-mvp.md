@@ -45,7 +45,7 @@ and monetization potential later.
 - [x] T6 Expenses UI: create/edit/delete expense, payer + involved selection, filters by participant and date. (worker: store actions + ExpenseForm/List/Filters; tsc + build green)
 - [x] T7 Balances dashboard: totals, per-person paid/owed/net, settlement plan ("who pays whom"), CSV export download. (worker: BalanceBar + SettlementList + detail sections + export button; tests 16/16)
 - [x] T8 Design polish: dark fintech theme, stat cards, simple charts (CSS/SVG), GSAP entrance/transition animations, responsive check. (worker: Reveal wrapper with useGSAP+matchMedia reduced-motion guard, section-level scoping, hover lift, CSS bar tweens, touch targets; parent read-back of Reveal.tsx OK; tsc + build green)
-- [x] T9 Docs & verification: README (install, dev, test, demo script), fresh `npm ci` + `npm test` + `npm run build` all green. (README written; clean-room verification 2026-09-16: npm ci OK, 16/16 tests, eslint clean, build 3 routes)
+- [x] T9 Docs & verification: README (install, dev, test, demo script), fresh `npm ci` + `npm test` + `npm run build` all green. (README written; clean-room verification 2026-09-16: npm ci OK, 16/16 tests, eslint clean, build 3 routes; README rewritten to professional level same day: badges, TOC, architecture, privacy, roadmap. Uncommitted.)
 
 ## Acceptance criteria (MVP complete when a user can)
 
